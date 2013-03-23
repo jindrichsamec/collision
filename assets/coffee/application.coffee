@@ -1,0 +1,6 @@
+console.log 'applcation running...'
+
+socket = io.connect('http://localhost:3000')
+socket.on code, (data) ->
+	console.log data
+	socket.emit 'my other event', my: 'data'

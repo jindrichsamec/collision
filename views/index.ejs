@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Collision Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/assets/css/screen.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  	<div class="container">
+  	<div class="hero-unit">
+    	<h1>Collision</h1>
+    	<p>
+    		Join the game! Go to <a href="http://<%= host + '/' + code %>" title="Join the game">http://<%= host + '/' + code %></a>
+    	</p>
+    	<img src="https://chart.googleapis.com/chart?cht=qr&amp;chs=300x300&amp;chl=http://<%= host + '/' + code %>" alt="qrcode" width="300" height="300">
+  	</div>
+  	<div class="content">
+
   </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/assets/js/application.js"></script>
 </html>
