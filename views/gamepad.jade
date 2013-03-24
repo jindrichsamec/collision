@@ -1,0 +1,32 @@
+!!!
+html
+	head
+		title Controller
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		link(href="/assets/css/screen.css", rel="stylesheet", media="screen")
+
+	body
+		.navbar
+			.navbar-inner
+				.brand Collision
+				.navbar-text
+					#status.label.label-success online
+
+		.well.span4.offset4
+			input.input-xlarge(type='text', placeholder="Your name...")
+			button.btn.btn-primary.btn-large Play the game
+		#gamepad.btn-group
+			a.btn.btn-large
+				i.icon-chevron-left
+			a.btn.btn-large
+				i.icon-chevron-right
+
+
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+		script(src='/socket.io/socket.io.js')
+		script
+			window.config = {
+				"host" : #{host},
+				"code" : #{code},
+			}
+		script(src='/assets/js/gamepad.js')

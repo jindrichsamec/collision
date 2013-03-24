@@ -1,0 +1,22 @@
+!!!
+html(lang="en")
+	head
+		title Collision Game
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		link(href="/assets/css/screen.css", rel="stylesheet", media="screen")
+
+	body
+		.container
+			.hero-unit
+				h1 Collision
+				p Join the Game Go to
+					a(href=host + '/' + code, title=code) #{host}/#{code}
+				img(src='https://chart.googleapis.com/chart?cht=qr&amp;chs=300x300&amp;chl=' + host + '/' + code, alt="qrcode", width="300", height="300")
+
+		script(src="/socket.io/socket.io.js")
+		script
+			window.config = {
+				"host" : #{host},
+				"code" : #{code},
+			}
+		script(src="/assets/js/game.js")
