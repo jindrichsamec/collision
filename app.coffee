@@ -1,13 +1,17 @@
 express = require 'express'
 http = require 'http'
 path = require 'path'
-sio = require 'socket.io'
+sio =
 less = require 'less-middleware'
 coffee = require 'connect-coffee-script'
 
 # create app
 app = express()
-routes = require('./routes')(app)
+server = http.createServer(app)
+sio = require('socket.io').listen server
+
+Controller = require './model/controller'
+routes = require('./routes')(app, new Controller(sio))
 
 # configuration
 app.configure ->
@@ -37,11 +41,10 @@ app.configure 'development', ->
 
 # routing
 app.get '/', routes.index
+app.get '/favicon.ico', (req, res) -> res.status 404
 app.get '/:code', routes.gamepad
 
 # http server
-server = http.createServer(app).listen app.get('port'), ->
+server.listen app.get('port'), ->
   console.log 'Express server listening on port ' + app.get 'port'
 
-# socket-io server
-sio.listen server

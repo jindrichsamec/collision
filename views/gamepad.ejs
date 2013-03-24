@@ -7,7 +7,20 @@
   </head>
   <body>
     <h1>Gamepad</h1>
-    <%= code %>
-    <script src="/assets/js/application.js"></script>
+
+    <div class="btn-group" id="gamepad">
+      <a class="btn btn-large" data-move="left"><i class="icon-chevron-left"></i></a>
+      <a class="btn btn-large" data-move="right"><i class="icon-chevron-right"></i></a>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      window.config = {
+        "host" : "<%= host %>",
+        "code" : "<%= code %>",
+      }
+    </script>
+    <script type="text/javascript"src="/assets/js/gamepad.js"></script>
   </body>
 </html>

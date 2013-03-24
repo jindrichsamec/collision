@@ -10,13 +10,19 @@
   	<div class="hero-unit">
     	<h1>Collision</h1>
     	<p>
-    		Join the game! Go to <a href="http://<%= host + '/' + code %>" title="Join the game">http://<%= host + '/' + code %></a>
+    		Join the game! Go to <a href="<%= host + '/' + code %>" title="Join the game"><%= host + '/' + code %></a>
     	</p>
-    	<img src="https://chart.googleapis.com/chart?cht=qr&amp;chs=300x300&amp;chl=http://<%= host + '/' + code %>" alt="qrcode" width="300" height="300">
+    	<img src="https://chart.googleapis.com/chart?cht=qr&amp;chs=300x300&amp;chl=<%= host + '/' + code %>" alt="qrcode" width="300" height="300">
   	</div>
   	<div class="content">
 
   </body>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/assets/js/application.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    window.config = {
+      "host" : "<%= host %>",
+      "code" : "<%= code %>",
+    }
+  </script>
+  <script type="text/javascript"src="/assets/js/game.js"></script>
 </html>
