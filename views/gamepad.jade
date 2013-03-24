@@ -10,15 +10,16 @@ html
 			.navbar-inner
 				.brand Collision
 				.navbar-text
-					#status.label.label-success online
+					#status.label offline
 
 		.well.span4.offset4
-			input.input-xlarge(type='text', placeholder="Your name...")
-			button.btn.btn-primary.btn-large Play the game
+			input#login.input-xlarge(type='text', placeholder="Your name...")
+			button#signin.btn.btn-primary.btn-large Play the game
+
 		#gamepad.btn-group
-			a.btn.btn-large
+			a.btn.btn-large(data-move='left')
 				i.icon-chevron-left
-			a.btn.btn-large
+			a.btn.btn-large(data-move='right')
 				i.icon-chevron-right
 
 
@@ -26,7 +27,7 @@ html
 		script(src='/socket.io/socket.io.js')
 		script
 			window.config = {
-				"host" : #{host},
-				"code" : #{code},
+				"host" : "#{host}",
+				"code" : "#{code}",
 			}
 		script(src='/assets/js/gamepad.js')

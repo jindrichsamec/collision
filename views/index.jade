@@ -13,10 +13,15 @@ html(lang="en")
 					a(href=host + '/' + code, title=code) #{host}/#{code}
 				img(src='https://chart.googleapis.com/chart?cht=qr&amp;chs=300x300&amp;chl=' + host + '/' + code, alt="qrcode", width="300", height="300")
 
+
+				ul#userlist
+					li Players
+
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
 		script(src="/socket.io/socket.io.js")
 		script
 			window.config = {
-				"host" : #{host},
-				"code" : #{code},
+				"host" : "#{host}",
+				"code" : "#{code}",
 			}
 		script(src="/assets/js/game.js")
