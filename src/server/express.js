@@ -5,6 +5,7 @@ import express from 'express'
 import render from './render'
 
 import socket from './socket'
+import api from './api'
 
 export default (config) => {
 
@@ -18,9 +19,7 @@ export default (config) => {
 
 	app.get('/socket/*', socket.handle)
 
-	app.get('/api/*', (req, res) => {
-		console.log('API call');
-	})
+	app.get('/api/*', api.handle)
 
 	app.get('*', (req, res) => {
 		render(req.path, config)

@@ -38,18 +38,18 @@ module.exports = function(isDevelopment) {
       // Why only-dev-server instead of dev-server:
       // https://github.com/webpack/webpack/issues/418#issuecomment-54288041
       'webpack/hot/only-dev-server',
-      './src/client/main.js',
-      'bootstrap-webpack'
+      'bootstrap-webpack',
+      './src/client/main.js'
     ] : [
-      './src/client/main.js',
-      'bootstrap-webpack'
+      'bootstrap-webpack',
+      './src/client/main.js'
     ],
     module: {
       loaders: [
 
       // **IMPORTANT** This is needed so that each bootstrap js file required by
       // bootstrap-webpack has access to the jQuery object
-      // { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
+      { test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
 
       // Needed for the css-loader when [bootstrap-webpack](https://github.com/bline/bootstrap-webpack)
       // loads bootstrap's css.

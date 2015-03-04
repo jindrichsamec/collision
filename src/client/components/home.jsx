@@ -7,7 +7,7 @@ export default React.createClass({
 		return (
 			<div className="well">
 				<h1>{'Hi! I\'m Collision game'}</h1>
-				<Link to="game-pad" className="btn btn-primary">{'Join the game'}</Link>
+				<Link to="new-game" className="btn btn-primary">{'Join the game'}</Link>
 			</div>
 		)
 	}
