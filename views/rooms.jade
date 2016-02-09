@@ -1,0 +1,62 @@
+doctype html
+html
+	head
+		title= title
+		script(src='/socket.io/socket.io.js')
+
+	body
+		p= 'Room: ' + room
+
+		div(id="loginForm")
+			input(id="username")
+			button(id="login") login
+
+		div(id="gamepad")
+			button(id="37") LEFT
+			button(id="39") RIGHT
+
+		ul(id="userlist")
+
+		input(id="counter37",value=0)
+		input(id="counter39",value=0)
+
+		script(type='text/javascript').
+			var socket = io.connect('http://localhost:3000/');
+
+			var loginForm = document.getElementById('loginForm');
+			var gamepad = document.getElementById('gamepad');
+
+			loginForm.addEventListener('click', function(e) {
+				if(e.target.tagName === 'BUTTON') {
+					var username = document.getElementById('username').value;
+					socket.emit('join', {room: #{room}, username: username});
+				}
+			});
+
+			gamepad.addEventListener('click', function(e) {
+				if(e.target.tagName === 'BUTTON') {
+					socket.emit('click', {'key': parseInt(e.target.id), room: #{room}});
+				}
+			});
+
+			document.addEventListener('keydown', function(e) {
+				var allowedKeys = [37, 39];
+				if (allowedKeys.indexOf(e.keyCode) > -1) {
+					socket.emit('click', {key: e.keyCode, room: #{room}});
+				}
+			});
+
+			// Websockets
+
+			socket.on('click', function(data) {
+				var identifer = 'counter' + data.key;
+				document.getElementById(identifer).value = parseInt(document.getElementById(identifer).value) + 1;
+			});
+
+			socket.on('status', function(data) {
+				var html = '';
+				for (var i = 0; i < data.length; i++) {
+					html += '<li>' + data[i].name + '</li>'
+				}
+				document.getElementById('userlist').innerHTML = html;
+			});
