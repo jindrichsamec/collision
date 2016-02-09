@@ -5,7 +5,7 @@ var immutable = require('immutable');
 var Map = immutable.Map;
 
 var connections = immutable.List();
-var rooms = immutable.List();
+var rooms = immutable.Map();
 var users = immutable.Map();
 
 var User = immutable.Record({id: null, name: null});
@@ -26,7 +26,7 @@ io.on('connection', function(socket) {
  		var members = users.get(roomName) || immutable.List();
 
  		if (!rooms.has(roomName)) {
- 			rooms = rooms.push(roomName);
+ 			rooms = rooms.set(socket.id, roomName);
  		}
  		members = members.push(user);
  		users = users.set(roomName, members);
